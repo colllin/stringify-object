@@ -120,12 +120,15 @@ module.exports = (val, opts, pad) => {
 
 		val = String(val).replace(/[\r\n]/g, x => x === '\n' ? '\\n' : '\\r');
 
-		if (opts.singleQuotes === false) {
-			val = val.replace(/"/g, '\\"');
-			return `"${val}"`;
+		if (!opts.quoteCharacter) {
+			if (opts.singleQuotes === false) {
+				opts.quoteCharacter = `"`;
+			} else {
+				opts.quoteCharacter = `'`;
+			}
 		}
-
-		val = val.replace(/\\?'/g, '\\\'');
-		return `'${val}'`;
+		var escapeQuoteRegexp = new Regexp(opts.quoteCharacter, 'g');
+		val = val.replace(escapeQuoteRegexp, `\\${opts.quoteCharacter}`);
+		return `${opts.quoteCharacter}${val}${opts.quoteCharacter}`;
 	})(val, opts, pad);
 };
