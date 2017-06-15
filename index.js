@@ -127,7 +127,7 @@ module.exports = (val, opts, pad) => {
 				opts.quoteCharacter = `'`;
 			}
 		}
-		var escapeQuoteRegexp = new Regexp(opts.quoteCharacter, 'g');
+		var escapeQuoteRegexp = new RegExp(opts.quoteCharacter, 'g');
 		val = val.replace(escapeQuoteRegexp, `\\${opts.quoteCharacter}`);
 		return `${opts.quoteCharacter}${val}${opts.quoteCharacter}`;
 	})(val, opts, pad);
