@@ -27,7 +27,7 @@ const obj = {
 
 const pretty = stringifyObject(obj, {
 	indent: '  ',
-	singleQuotes: false
+	quoteCharacter: '"'
 });
 
 console.log(pretty);
@@ -66,12 +66,19 @@ Default: `'\t'`
 
 Preferred indentation.
 
-##### singleQuotes
+##### singleQuotes — *Deprecated: see `quoteCharacter`.*
 
 Type: `boolean`<br>
 Default: `true`
 
 Set to false to get double-quoted strings.
+
+##### quoteCharacter
+
+Type: `String`<br>
+Default: `'`
+
+Set to `"` to get double-quoted strings, or `` ` `` to get backtick-quoted strings.
 
 ##### filter(obj, prop)
 
@@ -131,7 +138,7 @@ const obj = {
 
 const pretty = stringifyObject(obj, {
 	indent: '  ',
-	singleQuotes: false,
+	quoteCharacter: '"',
 	inlineCharacterLimit: 12
 });
 
